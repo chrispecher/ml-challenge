@@ -1,0 +1,15 @@
+{
+  "name": "ml-challenge",
+  "version": "1.0.0",
+  "description": "challenge accepted!",
+  "main": "server.js",
+  "scripts":{
+    "client": "node client.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "~1.0.1",
+    "express": "~4.0.0"
+  }
+}
