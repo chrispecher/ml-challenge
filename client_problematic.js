@@ -1,7 +1,6 @@
 // problematic client
 
 const axios =  require('axios')
-// const { Person } = require('./database')
 
 // init store
 const persons = []

@@ -8,7 +8,6 @@ function Person() {
             name
         }
         persons.push(person)
-        console.log("person added to db: ", person)
         return nextId++
     }
 

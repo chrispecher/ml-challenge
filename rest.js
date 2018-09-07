@@ -1,37 +1,26 @@
 const axios =  require('axios')
 
-const restUrl = 'http://localhost:8080/api'
+const restUrl = 'http://localhost:8081/api'
 
 const rest = {
-    add: (obj, type, store, callback) => {
-        axios({
+    add: async (obj, type, store) => {
+        const res = await axios({
             url: `${restUrl}/${type}`,
             method: 'POST',
             data: obj
         })
-        .then((response) => {
-            const data = response.data
-            const idx = store.items.findIndex(item => item.id === data.clientId)
-            const storeItem = store.items[idx]
-            storeItem.id = data.id
-            // check if the person was renamed since the request was sent, TODO: PUT entire obj
-            if(storeItem.name !== data.name) {
-                // patch the server
-                rest.update(type, storeItem.id, 'name', data.name)
-            }
-            callback(data.id)
-        })
-        .catch(error => { console.error(error); throw error; });
+        return res.data
     },
-    update: (type, id, field, value) => {
+    update: async (type, id, field, value) => {
         if(id > -1) {
-            axios({
+            const res = await axios({
                 url: `${restUrl}/${type}/${id}`,
                 method: 'PATCH',
                 data: {
                     [field]: value
                 }
             })
+            return res.data
         }
     },
     list: async (type) => {

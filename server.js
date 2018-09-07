@@ -8,13 +8,12 @@ const { Person } = require('./database')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-const port = 8080
+const defaultPort = 8080
 
 // router for the api
 const router = express.Router()
 
 router.use(function(req, res, next) {
-    console.log('incoming api request')
     next()
 })
 
@@ -45,7 +44,14 @@ router.get('/', function(req, res) {
 app.use('/api', router)
 
 // listen on specified port for incoming requests
-app.listen(port)
+const server = (port) => {
+    app.listen(port)
+    console.log('listening on port ' + port)
+}
 
-console.log('listening on port ' + port)
+if(process.argv.includes('--autostart')) {
+    server(defaultPort)
+}
+
+module.exports = server
 
