@@ -2,7 +2,7 @@
 
 Checkout the repo
 ```
-git checkout https://github.com/chrispecher/ml-challenge.git 
+git clone https://github.com/chrispecher/ml-challenge.git 
 ```
 
 Install the packages
