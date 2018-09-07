@@ -16,22 +16,10 @@ const updateServer = (person) => {
                 name: person.name
             }
         })
-        .then(syncStore()) // not sure, better sync ;)
     }
     else {
         // other naive implementations
     }
-}
-
-const syncStore = () => {
-    axios({
-        url: 'http://localhost:8080/api/persons',
-        method: 'GET'
-    })
-    .then((response) => {
-        Object.assign(persons, response.data.persons)
-        console.log("local store after server sync:", persons)
-    }) 
 }
 
 const addPerson = (name = '') => {
@@ -57,3 +45,13 @@ const renamePerson = (person, name) => {
 // execute program
 const person = addPerson()
 renamePerson(person, 'John')
+setTimeout(() => {
+    axios({
+        url: 'http://localhost:8080/api/persons',
+        method: 'GET'
+    })
+    .then((response) => {
+        console.log("data on server:", response.data.persons)
+    }) 
+}, 500)
+
