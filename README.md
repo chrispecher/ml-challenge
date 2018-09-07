@@ -25,8 +25,7 @@ Expected output
 ```
 person added to local store: [ { id: -1, name: '' } ]
 person renamed in local store: [ { id: -1, name: 'John' } ]
-local store after server sync: [ { id: 0, name: '' } ]
-local store after server sync: [ { id: 0, name: '' }, { id: 1, name: 'John' } ]
+data on server: [ { id: 0, name: '' }, { id: 1, name: 'John' } ]
 ```
 
 For the final solution just run the test (uses an independent server port)
